@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+env/
+venv/
+.venv/
+ENV/
+
+# Pytest cache
+.pytest_cache/
+
+# Playwright reports and test artifacts
+playwright-report/
+test-results/
+*.zip
+
+# Environment variables
+.env
+*.env
+
+# Logs
+*.log
+
+# IDE files (PyCharm)
+.idea/
+*.iml
+
+# SQLite and DB files
+*.db
+*.sqlite3
+
+# macOS/Windows system files
+.DS_Store
+Thumbs.db
