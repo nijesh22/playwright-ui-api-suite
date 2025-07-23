@@ -1,10 +1,9 @@
 import pytest
 from pages.login_home_page import LoginHomePage
-from pages.product_details_page import ProductsDetailsPage
 from pages.products_page import ProductsPage
 from utils.assertions import assert_equal_titles
 
-@pytest.mark.parametrize("page", ["chromium"], indirect=True)
+@pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
 @pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
 @pytest.mark.parametrize("search_name", [
@@ -18,10 +17,8 @@ from utils.assertions import assert_equal_titles
     "Fancy Green Top"
 ])
 async def test_search_product_with_valid_keyword_1(page,search_name):
-
     loginhome = LoginHomePage(page)
     products = ProductsPage(page)
-    product_details = ProductsDetailsPage(page)
 
     await loginhome.menu_products_click()
 

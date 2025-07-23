@@ -16,4 +16,3 @@ async def page(request):
         page = await browser_instance.new_page()
         yield page
         await browser_instance.close()
-

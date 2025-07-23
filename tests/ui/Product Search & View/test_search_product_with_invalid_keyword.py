@@ -1,9 +1,8 @@
 import pytest
 from pages.login_home_page import LoginHomePage
-from pages.product_details_page import ProductsDetailsPage
 from pages.products_page import ProductsPage
 
-@pytest.mark.parametrize("page", ["chromium"], indirect=True)
+@pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
 @pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
 async def test_search_product_with_invalid_keyword_1(page):

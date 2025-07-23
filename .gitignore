@@ -36,3 +36,13 @@ test-results/
 # macOS/Windows system files
 .DS_Store
 Thumbs.db
+
+# Allure generated files
+allure-report/
+allure-results/
+
+# Custom reports
+reports/
+collected.txt
+
+

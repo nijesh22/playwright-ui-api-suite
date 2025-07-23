@@ -4,7 +4,7 @@ from pages.product_details_page import ProductsDetailsPage
 from pages.products_page import ProductsPage
 from utils.assertions import assert_equal_prices
 
-@pytest.mark.parametrize("page", ["chromium"], indirect=True)
+@pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
 @pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
 async def test_verify_product_pricing_1(page):

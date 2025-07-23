@@ -28,4 +28,12 @@ class PayementPage:
     async def pay_and_order(self):
         await self.pay.click()
 
+    async def fill_card_details(self, name, number, cvc, expiration_data, enter_year):
+        await self.fill_name_on_card(name)
+        await self.fill_card_number(number)
+        await self.fill_cvc(cvc)
+        await self.fill_expiration(expiration_data)
+        await self.year_fill(enter_year)
+
+
 

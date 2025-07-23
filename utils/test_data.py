@@ -15,11 +15,11 @@ class UserData:
     zipcode: str
     mobile_no: str
 
-def generate_user_data() -> UserData:
+def generate_user_data(password: str = None) -> UserData:
     return UserData(
         name="TestUser",
         email=f"nijeshplaywright{random.randint(1000,9999)}@test.com",
-        password=f"qwerty@{random.randint(1000,9999)}",
+        password=  password or f"qwerty@{random.randint(1000,9999)}",
         first_name=f"nijesh{random.randint(100,999)}",
         last_name=f"playwright{random.randint(100,999)}",
         address=lorem.sentence(),

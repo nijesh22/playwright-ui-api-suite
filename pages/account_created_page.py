@@ -7,3 +7,9 @@ class CreateAccountPage:
 
     async def continue_button_click(self):
         await self.continue_button.click()
+
+
+
+
+
+

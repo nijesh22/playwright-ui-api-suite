@@ -1,6 +1,7 @@
 
 
-async def assert_url(actual_url, expected_url):
+async def assert_url(page,expected_url):
+    actual_url = page.url
     assert actual_url == expected_url, f"Expected url '{expected_url}', but got '{actual_url}'"
     print(f"✅ Navigated to correct URL {expected_url} item(s).")
 
@@ -27,3 +28,14 @@ async def assert_image_is_loaded(image_element, label="Product image"):
     is_visible = await image_element.is_visible()
     assert is_visible, f"❌ {label} is not visible on the page."
     print(f"✅ {label} is visible.")
+
+async def assert_verify_account_created(page):
+    locator = page.locator("//b[normalize-space()='Account Created!']")
+    assert await locator.is_visible(), "Account creation confirmation not visible."
+    print(" Account successfully created")
+
+async def assert_text_match(actual, expected, label: str):
+    assert actual == expected, f"{label} does not match expected value."
+    print(f"✅ {label} verified.")
+
+

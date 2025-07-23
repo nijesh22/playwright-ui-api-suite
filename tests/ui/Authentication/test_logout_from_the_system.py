@@ -12,16 +12,11 @@ async def test_logout_from_the_system_1(page):
     signup = SignupPage(page)
     loginhomepage = LoginHomePage(page)
 
-    id = "nijeshplaywright8163@test.com"
-    name = "qwerty@8380"
-    expected_url = "https://automationexercise.com/"
-    expected_url_final = "https://automationexercise.com/login"
-
     await home.go_to_signup_page()
-    await signup.login(id,name)
-    actual_url = page.url
-    await assert_url(actual_url,expected_url)
+    await signup.login("nijeshplaywright8163@test.com","qwerty@8380")
+
+    await assert_url(page,"https://automationexercise.com/")
 
     await loginhomepage.logout_button_click()
-    actual_url = page.url
-    await assert_url(actual_url, expected_url_final)
+
+    await assert_url(page, "https://automationexercise.com/login")

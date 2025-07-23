@@ -10,13 +10,10 @@ async def test_login_with_invalid_credentials_1(page):
     home = HomePage(page)
     signup = SignupPage(page)
 
-    id = "invaliduser@test.com"
-    name = "invaliduser@8380"
-
-    await home.go_to_signup_page()
-    await signup.login(id,name)
-
-    msg = await signup.login_page_validation_message()
     validation_message = "Your email or password is incorrect!"
 
+    await home.go_to_signup_page()
+    await signup.login("invaliduser@test.com","invaliduser@8380")
+
+    msg = await signup.login_page_validation_message()
     await assert_equal_validation_message(msg, validation_message)
