@@ -1,22 +1,16 @@
 import pytest
-from pages.home_page import HomePage
-from pages.login_home_page import LoginHomePage
-from pages.signup_page import SignupPage
 from utils.assertions import assert_url
 
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
 @pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_logout_from_the_system_1(page):
-    home = HomePage(page)
-    signup = SignupPage(page)
-    loginhomepage = LoginHomePage(page)
+async def test_logout_from_the_system_1(page,home,signup,loginhome):
 
     await home.go_to_signup_page()
     await signup.login("nijeshplaywright8163@test.com","qwerty@8380")
 
     await assert_url(page,"https://automationexercise.com/")
 
-    await loginhomepage.logout_button_click()
+    await loginhome.logout_button_click()
 
     await assert_url(page, "https://automationexercise.com/login")

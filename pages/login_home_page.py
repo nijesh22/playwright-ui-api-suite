@@ -17,6 +17,6 @@ class LoginHomePage:
         await self.delete_button.click()
 
     async def menu_products_click(self):
-        await self.page.goto("https://automationexercise.com/")
+        await self.page.goto("https://automationexercise.com/" , wait_until="domcontentloaded", timeout=60000)
         await self.menu_products.click()
 

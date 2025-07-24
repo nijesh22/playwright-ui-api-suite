@@ -1,11 +1,9 @@
 import pytest
-from pages.contact_us_page import ContactUsPage
 
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
 @pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_submit_contact_us_form_1(page):
-    contactus = ContactUsPage(page)
+async def test_submit_contact_us_form_1(page,contactus):
 
     await contactus.go_to_contact_us_page()
     await contactus.fill_name("raju")

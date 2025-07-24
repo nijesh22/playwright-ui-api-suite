@@ -1,16 +1,10 @@
 import pytest
-from pages.category_products_page import CategoryProductPage
-from pages.login_home_page import LoginHomePage
-from pages.products_page import ProductsPage
 from utils.assertions import assert_url
 
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
 @pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_vew_product_by_category_1(page):
-    loginhome = LoginHomePage(page)
-    products = ProductsPage(page)
-    categoryproduct = CategoryProductPage(page)
+async def test_vew_product_by_category_1(page,loginhome,products,categoryproduct):
 
     await loginhome.menu_products_click()
     await products.click_category_men()

@@ -1,29 +1,16 @@
 import pytest
-from pages.account_created_page import CreateAccountPage
-from pages.brand_products_page import BrandProductPage
-from pages.home_page import HomePage
-from pages.login_home_page import LoginHomePage
-from pages.product_details_page import ProductsDetailsPage
-from pages.products_page import ProductsPage
-from pages.signup_page import SignupPage
-from pages.view_cart_page import ViewCartPage
-from utils.assertions import assert_url, assert_verify_account_created
+from flows.brand_navigation_to_h3m_product_flow import go_to_brand_h3m_tshirt_and_assert_product
+from utils.assertions import assert_verify_account_created
+from utils.logger import Utils
 from utils.test_data import generate_user_data
 
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
 @pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_remove_product_from_cart_1(page):
-    home = HomePage(page)
-    signup = SignupPage(page)
-    createaccount = CreateAccountPage(page)
-    loginhome = LoginHomePage(page)
-    products = ProductsPage(page)
-    brandproduct = BrandProductPage(page)
-    productsdetails = ProductsDetailsPage(page)
-    viewcart = ViewCartPage(page)
-
+async def test_remove_product_from_cart_1(page,home,signup,viewcart,productsdetails,brandproduct,products,loginhome,createaccount,):
     user = generate_user_data()
+    log = Utils.customlogger()
+
     await home.go_to_signup_page()
     await signup.signup(user)
 
@@ -32,13 +19,8 @@ async def test_remove_product_from_cart_1(page):
     await createaccount.continue_button_click()
 
     await loginhome.menu_products_click()
-    await products.click_brand_h3m()
 
-    await assert_url(page, "https://automationexercise.com/brand_products/H&M")
-
-    await brandproduct.click_brand_h3m_tshirt()
-
-    await assert_url(page, "https://automationexercise.com/product_details/2")
+    await go_to_brand_h3m_tshirt_and_assert_product(page, products, brandproduct)
 
     await productsdetails.add_to_cart_click()
     await productsdetails.view_cart_click()
@@ -46,4 +28,4 @@ async def test_remove_product_from_cart_1(page):
     await viewcart.click_cancel_cart_iteam()
 
     assert await viewcart.get_cart_is_empty_text() == "Cart is empty!", " Cart is not empty as expected."
-    print(" Verified: Cart is empty.")
+    log.info(" Verified: Cart is empty.")

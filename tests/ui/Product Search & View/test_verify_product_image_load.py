@@ -1,14 +1,10 @@
 import pytest
-from pages.login_home_page import LoginHomePage
-from pages.products_page import ProductsPage
 from utils.assertions import assert_image_is_loaded
 
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
 @pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_verify_product_image_load_1(page):
-    loginhome = LoginHomePage(page)
-    products = ProductsPage(page)
+async def test_verify_product_image_load_1(page,loginhome,products):
 
     await loginhome.menu_products_click()
 

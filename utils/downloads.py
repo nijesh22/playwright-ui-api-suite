@@ -1,6 +1,8 @@
 from pathlib import Path
+from utils.logger import Utils
 
 async def download_and_verify(page, locator: str, download_dir="downloads"):
+    log = Utils.customlogger()
     download_path = Path(download_dir)
     download_path.mkdir(parents=True, exist_ok=True)
 
@@ -13,6 +15,6 @@ async def download_and_verify(page, locator: str, download_dir="downloads"):
     await download.save_as(save_path)
 
     assert save_path.exists(), f"❌ Download failed: {save_path.name} not found."
-    print(f"✅ File downloaded successfully: {save_path}")
+    log.info(f"✅ File downloaded successfully: {save_path}")
 
     return save_path

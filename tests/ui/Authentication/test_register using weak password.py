@@ -1,6 +1,4 @@
 import pytest
-from pages.home_page import HomePage
-from pages.signup_page import SignupPage
 from utils.test_data import generate_user_data
 
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
@@ -16,9 +14,7 @@ from utils.test_data import generate_user_data
     "letmein",
     "iloveyou"
 ])
-async def test_register_using_weak_password_1(page, weak_password):
-    home = HomePage(page)
-    signup = SignupPage(page)
+async def test_register_using_weak_password_1(page, weak_password,home,signup):
     password = weak_password
 
     user = generate_user_data()
