@@ -1,10 +1,11 @@
 import pytest
 from utils.assertions import assert_equal_titles
 
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
-@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
+# @pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_view_product_detail_page_1(page,loginhome,products,productsdetails):
+async def test_view_product_detail_page(page,loginhome,products,productsdetails):
     await loginhome.menu_products_click()
 
     product_elements = await products.products_all()

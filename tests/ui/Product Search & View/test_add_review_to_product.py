@@ -4,11 +4,11 @@ import pytest
 from utils.assertions import assert_url
 from utils.logger import Utils
 
-
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
-@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
+#@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_add_review_to_productz_1(page,loginhome,products,productsdetails,categoryproduct):
+async def test_add_review_to_productz(page,loginhome,products,productsdetails,categoryproduct):
     log = Utils.customlogger()
 
     await loginhome.menu_products_click()

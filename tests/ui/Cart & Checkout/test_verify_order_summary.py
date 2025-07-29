@@ -5,10 +5,11 @@ from utils.assertions import assert_url
 from utils.logger import Utils
 from utils.test_data import generate_user_data
 
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
-@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
+#@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_verify_order_summary_1(page,home,checkout,viewcart,productsdetails,signup,createaccount,loginhome,products,brandproduct):
+async def test_verify_order_summary(page,home,checkout,viewcart,productsdetails,signup,createaccount,loginhome,products,brandproduct):
     log = Utils.customlogger()
     user = generate_user_data()
 

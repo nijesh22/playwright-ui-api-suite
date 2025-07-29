@@ -6,11 +6,11 @@ from utils.downloads import download_and_verify
 from utils.logger import Utils
 from utils.test_data import generate_user_data
 
-
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
-@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
+#@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_download_invoice_1(page,payementdone,checkout,payement,home,viewcart,signup,createaccount,loginhome,products,brandproduct,productsdetails):
+async def test_download_invoice(page,payementdone,checkout,payement,home,viewcart,signup,createaccount,loginhome,products,brandproduct,productsdetails):
     user = generate_user_data()
     log = Utils.customlogger()
 

@@ -4,10 +4,12 @@ from flows.register_flow import register_new_user_flow
 from utils.assertions import assert_url
 from utils.test_data import generate_user_data
 
+
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
-@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
+#@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_checkout_as_guest_register_on_checkout_1(page,home,createaccount,signup,viewcart,productsdetails,loginhome,products,brandproduct):
+async def test_checkout_as_guest_register_on_checkout(page,home,createaccount,signup,viewcart,productsdetails,loginhome,products,brandproduct):
 
     await loginhome.menu_products_click()
 

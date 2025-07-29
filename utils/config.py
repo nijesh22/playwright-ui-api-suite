@@ -1,1 +1,1 @@
-# Configuration values can be placed here
+BASE_URL = "https://fakestoreapi.com"

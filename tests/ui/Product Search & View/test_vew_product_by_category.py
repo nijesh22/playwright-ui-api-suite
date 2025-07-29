@@ -1,10 +1,11 @@
 import pytest
 from utils.assertions import assert_url
 
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
-@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
+#@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_vew_product_by_category_1(page,loginhome,products,categoryproduct):
+async def test_vew_product_by_category(page,loginhome,products,categoryproduct):
 
     await loginhome.menu_products_click()
     await products.click_category_men()

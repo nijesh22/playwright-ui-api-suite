@@ -4,10 +4,11 @@ from utils.assertions import assert_verify_account_created
 from utils.logger import Utils
 from utils.test_data import generate_user_data
 
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
-@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
+#@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_remove_product_from_cart_1(page,home,signup,viewcart,productsdetails,brandproduct,products,loginhome,createaccount,):
+async def test_remove_product_from_cart(page,home,signup,viewcart,productsdetails,brandproduct,products,loginhome,createaccount,):
     user = generate_user_data()
     log = Utils.customlogger()
 

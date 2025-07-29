@@ -4,10 +4,12 @@ from flows.register_flow import register_new_user_flow
 from utils.logger import Utils
 from utils.test_data import generate_user_data
 
+
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
-@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
+#@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_add_same_product_twice_1(page,home,signup,createaccount,loginhome,productsdetails,brandproduct,viewcart,products):
+async def test_add_same_product_twice(page,home,signup,createaccount,loginhome,productsdetails,brandproduct,viewcart,products):
     log = Utils.customlogger()
 
     user = generate_user_data()

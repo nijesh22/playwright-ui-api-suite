@@ -4,11 +4,11 @@ from flows.brand_navigation_to_h3m_product_flow import go_to_brand_h3m_tshirt_an
 from utils.assertions import assert_url
 from utils.logger import Utils
 
-
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
-@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
+#@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_verify_address_details_during_checkout_1(page,brandproduct,products,checkout,home,signup,loginhome,productsdetails,viewcart):
+async def test_verify_address_details_during_checkout(page,brandproduct,products,checkout,home,signup,loginhome,productsdetails,viewcart):
     log = Utils.customlogger()
 
     await home.go_to_signup_page()

@@ -2,10 +2,11 @@ import pytest
 from flows.register_flow import register_new_user_flow
 from utils.test_data import generate_user_data
 
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
-@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
+#@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_submit_product_review_empty_fields_1(page,productsdetails,brandproduct,products,home,loginhome,signup,createaccount,):
+async def test_submit_product_review_empty_fields(page,productsdetails,brandproduct,products,home,loginhome,signup,createaccount,):
     user = generate_user_data()
 
     await register_new_user_flow(page, home, signup, createaccount, user)

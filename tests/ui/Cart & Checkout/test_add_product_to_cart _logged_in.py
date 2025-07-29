@@ -4,10 +4,11 @@ from flows.register_flow import register_new_user_flow
 from utils.assertions import assert_text_match
 from utils.test_data import generate_user_data
 
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
-@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
+#@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_add_product_to_cart_logged_in_1(page,home,signup,createaccount,loginhome,products,brandproduct,productsdetails,viewcart):
+async def test_add_product_to_cart_logged_in(page,home,signup,createaccount,loginhome,products,brandproduct,productsdetails,viewcart):
 
     user = generate_user_data()
     await register_new_user_flow(page, home, signup, createaccount, user)

@@ -5,11 +5,11 @@ log = Utils.customlogger()
 async def assert_url(page,expected_url):
     actual_url = page.url
     assert actual_url == expected_url, f"Expected url '{expected_url}', but got '{actual_url}'"
-    log.info(f"✅ Navigated to correct URL {expected_url} item(s).")
+    log.info(f" Navigated to correct URL {expected_url} item(s).")
 
 async def assert_equal_validation_message(actual, expected, message=""):
     assert actual == expected, f"❌ {message or 'Unexpected validation message'}\nExpected: '{expected}'\nGot: '{actual}'"
-    log.info(f"✅ {message or 'Validation message displayed correctly'}")
+    log.info(f" {message or 'Validation message displayed correctly'}")
 
 async def assert_required_field_blocked(blocked):
     assert blocked, " Browser allowed submission with empty required fields"
@@ -29,7 +29,7 @@ async def assert_image_is_loaded(image_element, label="Product image"):
     await image_element.page.wait_for_timeout(500)
     is_visible = await image_element.is_visible()
     assert is_visible, f"❌ {label} is not visible on the page."
-    log.info(f"✅ {label} is visible.")
+    log.info(f" {label} is visible.")
 
 async def assert_verify_account_created(page):
     locator = page.locator("//b[normalize-space()='Account Created!']")
@@ -38,6 +38,12 @@ async def assert_verify_account_created(page):
 
 async def assert_text_match(actual, expected, label: str):
     assert actual == expected, f"{label} does not match expected value."
-    log.info(f"✅ {label} verified.")
+    log.info(f" {label} verified.")
+
+async def assert_account_not_created(page, password: str):
+
+    is_visible = await page.locator("text=Account Created!").is_visible()
+    assert not is_visible, f"{password} : A weak password like this must NOT be accepted!"
+
 
 

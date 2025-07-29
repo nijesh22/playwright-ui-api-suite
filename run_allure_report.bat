@@ -1,0 +1,13 @@
+@echo off
+echo Cleaning old Allure results...
+if exist allure-results rmdir /s /q allure-results
+if exist allure-report rmdir /s /q allure-report
+
+echo Running tests and collecting Allure results...
+pytest --alluredir=allure-results
+
+echo Generating Allure report...
+allure generate allure-results -o allure-report --clean
+
+echo Opening Allure report...
+allure open allure-report

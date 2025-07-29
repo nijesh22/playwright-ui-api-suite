@@ -1,10 +1,11 @@
 import pytest
 from utils.logger import Utils
 
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
-@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
+#@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
-async def test_search_product_with_invalid_keyword_1(page,loginhome,products):
+async def test_search_product_with_invalid_keyword(page,loginhome,products):
     log = Utils.customlogger()
     await loginhome.menu_products_click()
 

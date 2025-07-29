@@ -1,8 +1,9 @@
 import pytest
 from utils.assertions import assert_equal_titles
 
+@pytest.mark.flaky(reruns=2, reruns_delay=1)
 @pytest.mark.parametrize("page", ["chromium", "firefox", "webkit"], indirect=True)
-@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
+#@pytest.mark.skip(reason="Skipping temporarily – avoids confusion")
 @pytest.mark.asyncio
 @pytest.mark.parametrize("search_name", [
     "Blue Top",
@@ -14,7 +15,7 @@ from utils.assertions import assert_equal_titles
     "Madame Top For Women",
     "Fancy Green Top"
 ])
-async def test_search_product_with_valid_keyword_1(page,search_name,loginhome,products):
+async def test_search_product_with_valid_keyword(page,search_name,loginhome,products):
 
     await loginhome.menu_products_click()
 

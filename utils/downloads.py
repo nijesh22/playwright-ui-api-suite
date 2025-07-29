@@ -15,6 +15,6 @@ async def download_and_verify(page, locator: str, download_dir="downloads"):
     await download.save_as(save_path)
 
     assert save_path.exists(), f"❌ Download failed: {save_path.name} not found."
-    log.info(f"✅ File downloaded successfully: {save_path}")
+    log.info(f" File downloaded successfully: {save_path}")
 
     return save_path
